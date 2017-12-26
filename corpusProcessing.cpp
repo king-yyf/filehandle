@@ -146,6 +146,7 @@ int main(int argc, const char * argv[]) {
     //{B I O} * {nr, ns, m, t, nt}
     vector<string> buff;
     bool in_kuohao = false;
+  //  bool is_blank = false;
     for(int i = 1; i < 7; ++i)
     {
       //  cout << i << endl;
@@ -165,11 +166,12 @@ int main(int argc, const char * argv[]) {
                 str = pch; // eg str: 迈向/v
                 if(str == "\r\n" || str == "\n" || str == " ")
                 {
+                  //  is_blank = true;
                      pch = strtok(NULL, " ");
                     continue;
                 }
                    
-                size_t id = str.find('/');
+                size_t id = str.find('/', 1);
                 prepos = postag;
                 postag = str.substr(id + 1); //v; n]nt;
                 str = str.substr(0, id); // 迈向; [中国 ;
@@ -195,18 +197,23 @@ int main(int argc, const char * argv[]) {
                         in_kuohao = false;
                         buff.clear();
                     }
-                }else if(str[0] == '[')
+                }else if(str[0] == '[' && str.length() > 1)
                 {
                     in_kuohao = true;
                     buff.emplace_back(str.substr(1));
                 }else
                 {
+                    char ch = postag[postag.length() - 1];
+                    if(!isalpha(ch))
+                        postag = postag.substr(0, postag.length() - 1);
                     gettag(str, postag, nertag, prepos);
+                    
                     fprintf(fp_out, "%s\t%s\t%s\n", str.c_str(), postag.c_str(), nertag.c_str());
                 }
                 pch = strtok(NULL, " ");
             }
-            fprintf(fp_out, "\n");
+           
+                fprintf(fp_out, "\n");
         }
         fclose(fp_in);
         fclose(fp_out);
@@ -214,3 +221,4 @@ int main(int argc, const char * argv[]) {
     cout<< "ok" <<endl;
     return 0;
 }
+
