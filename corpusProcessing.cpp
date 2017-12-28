@@ -185,12 +185,18 @@ int main(int argc, const char * argv[]) {
                         postag = postag.substr(0, idx);
                         for(size_t j = 0; j < buff.size(); ++j)
                         {
-                            if(j == 0)
+                           if(isner(nertag))
                             {
-                                temp = "B-" + nertag;
+                                if(j == 0)
+                                {
+                                    temp = "B-" + nertag;
+                                }
+                                else{
+                                    temp = "I-" + nertag;
+                                }
                             }
                             else{
-                                temp = "I-" + nertag;
+                                temp = "O";
                             }
                             fprintf(fp_out, "%s\t%s\t%s\n", buff[j].c_str(), postag.c_str(), temp.c_str());
                         }
