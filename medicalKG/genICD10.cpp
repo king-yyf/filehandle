@@ -34,24 +34,24 @@ int main(int argc, const char * argv[]) {
         min_code = str.substr(0,3);
         max_code = str.substr(4,3);
         str1 = "C."+min_code+"-C."+max_code+"-" + str.substr(7);
-        fprintf(f3, "%s\t%s\n", str1.data(), "C-疾病");
+        fprintf(f3, "%s\t%s\t%d\n", str1.data(), "C-疾病",1);
         for(int j = 0; j < iNum; ++j)
         {
             //             printf("j = : %d, iNum = %d\n", j, iNum);
             fscanf(f1, "%s %s",code, label);
             sCode = code;
             sLabel = label;
-//            sLabel = sCode + "-" + sLabel;
+            //            sLabel = sCode + "-" + sLabel;
             tmp = code;
             min_code = tmp.substr(0,3);
             max_code = tmp.substr(4);
             sLabel = "C."+min_code + "-C." + max_code + "-" + sLabel;
-            fprintf(f3, "%s\t%s\n",tmp.data(),str1.data());
+            fprintf(f3, "%s\t%s\t%d\n",sLabel.data(),str1.data(),1);
             while (!que1.empty()) {
                 tmp = que1.front().substr(2);
                 if(tmp >= min_code && tmp <= max_code){
                     str = que1.front() + "-" + que2.front();
-                    fprintf(f3, "%s = %s\n", str.data(), sLabel.data());
+                    fprintf(f3, "%s\t%s\t%d\n", str.data(), sLabel.data(),1);
                     que1.pop();
                     que2.pop();
                 }
@@ -64,4 +64,3 @@ int main(int argc, const char * argv[]) {
     printf("count = %d\n",count);
     return 0;
 }
-
