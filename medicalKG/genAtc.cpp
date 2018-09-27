@@ -99,3 +99,33 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
+
+//int main(){
+//    FILE * f1 = fopen("/Users/yangyf/Desktop/atc1.txt", "r");
+//    FILE * f2 = fopen("/Users/yangyf/Desktop/temp.txt", "r");
+//    FILE * f3 = fopen("/Users/yangyf/Desktop/atc2.txt", "w");
+//    map<string, string> atcMap;
+//    
+//    char key[300], value[300];
+//    string code, str1,str2;
+//    int n,pos;
+//    while (fscanf(f1, "%s %s %d",key,value,&n) == 3)
+//    {
+//        code = key;
+//        pos = code.find('-');
+//        code = code.substr(2,pos-2);
+//        atcMap.emplace(code,value);
+//    }
+//    while (fscanf(f2, "%s %s",key,value) == 2) {
+//        code = key;
+//        pos = code.find('-');
+//        code = code.substr(2,pos-2);
+//        if(atcMap.count(code) > 0)
+//        {
+//            fprintf(f3, "%s %s %d\n",key, atcMap[code].data(),0);
+//        }
+//    }
+//    printf("ok\n");
+//    return 0;
+//}
+
