@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
     FILE * f1 = fopen("/Users/yangyf/Desktop/icd-range.txt", "r");
-    FILE * f2 = fopen("/Users/yangyf/Desktop/ICD10-3.txt", "r");
+    FILE * f2 = fopen("/Users/yangyf/Desktop/icd_name_v2.txt", "r");
     FILE * f3 = fopen("/Users/yangyf/Desktop/icd_rel.txt", "w");
     map<string,string> icdMap;
     map<string,string> icdMap2;
@@ -45,9 +45,9 @@ int main()
             sLabel = "C."+min_code + "-C." + max_code + "-" + sLabel;
             fprintf(f3, "%s\t%s\t%d\n",sLabel.data(),str1.data(),1);
             while (!que1.empty()) {
-                tmp = que1.front().substr(2);
+                tmp = que1.front();
                 if(tmp >= min_code && tmp <= max_code){
-                    str = que1.front() + "-" + que2.front();
+                    str = "C." + que1.front() + "-" + que2.front();
                     fprintf(f3, "%s\t%s\t%d\n", str.data(), sLabel.data(),1);
                     que1.pop();
                     que2.pop();
@@ -72,4 +72,3 @@ int main()
     printf("ok!\n");
     return 0;
 }
-
